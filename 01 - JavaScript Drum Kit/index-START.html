@@ -1,66 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JS Drum Kit</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS Drum Kit</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="keys">
+      <div data-key="65" class="key">
+        <kbd>A</kbd>
+        <span class="sound">clap</span>
+      </div>
+      <div data-key="83" class="key">
+        <kbd>S</kbd>
+        <span class="sound">hihat</span>
+      </div>
+      <div data-key="68" class="key">
+        <kbd>D</kbd>
+        <span class="sound">kick</span>
+      </div>
+      <div data-key="70" class="key">
+        <kbd>F</kbd>
+        <span class="sound">openhat</span>
+      </div>
+      <div data-key="71" class="key">
+        <kbd>G</kbd>
+        <span class="sound">boom</span>
+      </div>
+      <div data-key="72" class="key">
+        <kbd>H</kbd>
+        <span class="sound">ride</span>
+      </div>
+      <div data-key="74" class="key">
+        <kbd>J</kbd>
+        <span class="sound">snare</span>
+      </div>
+      <div data-key="75" class="key">
+        <kbd>K</kbd>
+        <span class="sound">tom</span>
+      </div>
+      <div data-key="76" class="key">
+        <kbd>L</kbd>
+        <span class="sound">tink</span>
+      </div>
+    </div>
 
+    <audio data-key="65" src="sounds/clap.wav"></audio>
+    <audio data-key="83" src="sounds/hihat.wav"></audio>
+    <audio data-key="68" src="sounds/kick.wav"></audio>
+    <audio data-key="70" src="sounds/openhat.wav"></audio>
+    <audio data-key="71" src="sounds/boom.wav"></audio>
+    <audio data-key="72" src="sounds/ride.wav"></audio>
+    <audio data-key="74" src="sounds/snare.wav"></audio>
+    <audio data-key="75" src="sounds/tom.wav"></audio>
+    <audio data-key="76" src="sounds/tink.wav"></audio>
 
-  <div class="keys">
-    <div data-key="65" class="key">
-      <kbd>A</kbd>
-      <span class="sound">clap</span>
-    </div>
-    <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">hihat</span>
-    </div>
-    <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">kick</span>
-    </div>
-    <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">openhat</span>
-    </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
-    </div>
-    <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">ride</span>
-    </div>
-    <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">snare</span>
-    </div>
-    <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">tom</span>
-    </div>
-    <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">tink</span>
-    </div>
-  </div>
+    <script>
+      const keys = document.getElementsByClassName("key");
+      var sound = [];
+      for (var i = 0; i < keys.length; i++) {
+        y = document.getElementsByTagName("audio")[i];
+        sound.push(y);
+      }
 
-  <audio data-key="65" src="sounds/clap.wav"></audio>
-  <audio data-key="83" src="sounds/hihat.wav"></audio>
-  <audio data-key="68" src="sounds/kick.wav"></audio>
-  <audio data-key="70" src="sounds/openhat.wav"></audio>
-  <audio data-key="71" src="sounds/boom.wav"></audio>
-  <audio data-key="72" src="sounds/ride.wav"></audio>
-  <audio data-key="74" src="sounds/snare.wav"></audio>
-  <audio data-key="75" src="sounds/tom.wav"></audio>
-  <audio data-key="76" src="sounds/tink.wav"></audio>
+      function play(number) {
+        keys[number].classList.add("playing");
+        sound[number].play();
+        setTimeout(() => {
+          keys[number].classList.remove("playing");
+        }, 200);
+      }
+      keys[0].addEventListener("click", (playing) => {
+        play(0);
+      });
 
-<script>
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "a") {
+          play(0);
+        }
+      });
 
-</script>
+      keys[1].addEventListener("click", (playing) => {
+        play(1);
+      });
 
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "s") {
+          play(1);
+        }
+      });
 
-</body>
+      keys[2].addEventListener("click", (playing) => {
+        play(2);
+      });
+
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "d") {
+          play(2);
+        }
+      });
+
+      keys[3].addEventListener("click", (playing) => {
+        play(3);
+      });
+
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "f") {
+          play(3);
+        }
+      });
+
+      keys[4].addEventListener("click", (playing) => {
+        play(4);
+      });
+
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "g") {
+          play(4);
+        }
+      });
+
+      keys[5].addEventListener("click", (playing) => {
+        play(5);
+      });
+
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "h") {
+          play(5);
+        }
+      });
+
+      keys[6].addEventListener("click", (playing) => {
+        play(6);
+      });
+
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "j") {
+          play(6);
+        }
+      });
+
+      keys[7].addEventListener("click", (playing) => {
+        play(7);
+      });
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "k") {
+          play(7);
+        }
+      });
+
+      keys[8].addEventListener("click", (playing) => {
+        play(8);
+      });
+      window.addEventListener("keydown", (playing) => {
+        var x = playing.key;
+        if (x === "l") {
+          play(8);
+        }
+      });
+    </script>
+  </body>
 </html>

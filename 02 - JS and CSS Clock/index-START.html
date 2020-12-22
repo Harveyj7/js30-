@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>JS + CSS Clock</title>
-</head>
-<body>
-
-
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS + CSS Clock</title>
+  </head>
+  <body>
     <div class="clock">
       <div class="clock-face">
         <div class="hand hour-hand"></div>
@@ -15,60 +13,105 @@
       </div>
     </div>
 
+    <style>
+      html {
+        background: #018ded url(https://unsplash.it/1500/1000?image=881&blur=5);
+        background-size: cover;
+        font-family: "helvetica neue";
+        text-align: center;
+        font-size: 10px;
+      }
 
-  <style>
-    html {
-      background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
-      background-size: cover;
-      font-family: 'helvetica neue';
-      text-align: center;
-      font-size: 10px;
-    }
+      body {
+        margin: 0;
+        font-size: 2rem;
+        display: flex;
+        flex: 1;
+        min-height: 100vh;
+        align-items: center;
+      }
 
-    body {
-      margin: 0;
-      font-size: 2rem;
-      display: flex;
-      flex: 1;
-      min-height: 100vh;
-      align-items: center;
-    }
+      .clock {
+        width: 30rem;
+        height: 30rem;
+        border: 20px solid white;
+        border-radius: 50%;
+        margin: 50px auto;
+        position: relative;
+        padding: 2rem;
+        box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
+          inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+      }
 
-    .clock {
-      width: 30rem;
-      height: 30rem;
-      border: 20px solid white;
-      border-radius: 50%;
-      margin: 50px auto;
-      position: relative;
-      padding: 2rem;
-      box-shadow:
-        0 0 0 4px rgba(0,0,0,0.1),
-        inset 0 0 0 3px #EFEFEF,
-        inset 0 0 10px black,
-        0 0 10px rgba(0,0,0,0.2);
-    }
+      .clock-face {
+        position: relative;
+        --width: 100%;
+        height: var(--width);
+        transform: translateY(
+          -3px
+        ); /* account for the height of the clock hands */
+      }
 
-    .clock-face {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transform: translateY(-3px); /* account for the height of the clock hands */
-    }
+      .hand {
+        width: 50%;
+        background: black;
+        position: absolute;
+        top: 50%;
+        transform-origin: 100%;
+        transform: rotate(90deg);
+      }
+      .second-hand {
+        height: 2px;
+        /* transform: rotate(10deg); */
+        transition: all 1s none 0s;
+        background: red;
+      }
+      .min-hand {
+        height: 3px;
+        /* transform: rotate(60deg); */
+        background: green;
+        transition: all 1s linear 0s;
+      }
+      .hour-hand {
+        height: 5px;
+        background: black;
+        /* transform: rotate(60deg); */
+      }
+    </style>
 
-    .hand {
-      width: 50%;
-      height: 6px;
-      background: black;
-      position: absolute;
-      top: 50%;
-    }
+    <script>
+      var seconds = 0;
+      var secondHand = document.querySelector(".second-hand");
+      var mins = 0;
+      var minHand = document.querySelector(".min-hand");
+      var hours = 0;
+      var hourHand = document.querySelector(".hour-hand");
 
-  </style>
+      setInterval(secfunc, 1000);
+      function secfunc() {
+        seconds += 1;
+        let secdeg = (seconds / 60) * 360;
+        console.log(`seconds: ${seconds}`);
+        secondHand.style.transform = `rotate(${90 + secdeg}deg)`;
+        mins = mins + 1 / 60;
+        console.log(`mins: ${mins}`);
+        let mindeg = (mins / 60) * 360;
+        minHand.style.transform = `rotate(${90 + mindeg}deg)`;
+        hours += (1 / 12) * (1 / 60);
+        let hourdeg = (hours / 12) * 360;
+        hourHand.style.transform = `rotate(${90 + hourdeg}deg)`;
+        console.log(`hours: ${hours}`);
 
-  <script>
-
-
-  </script>
-</body>
+        if (seconds > 59) {
+          seconds = 0;
+          minfunc();
+        }
+      }
+      function minfunc() {
+        if (mins > 59) {
+          mins = 0;
+        }
+      }
+    </script>
+  </body>
 </html>
