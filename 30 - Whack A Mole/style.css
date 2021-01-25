@@ -25,12 +25,14 @@ h1 {
 }
 
 .score {
-  background: rgba(255, 255, 255, 0.2);
+  font-size: 3rem;
+  /* text-align: center; */
+  /* background: rgba(255, 255, 255, 0.2); */
   padding: 0 3rem;
-  line-height: 1;
-  border-radius: 1rem;
 }
-
+p {
+  text-align: center;
+}
 .game {
   width: 600px;
   height: 400px;
@@ -58,7 +60,7 @@ h1 {
 }
 
 .mole {
-  background: url("diglett.png") bottom center no-repeat;
+  background: url("diglett2.png") bottom center no-repeat;
   background-size: 60%;
   position: absolute;
   top: 100%;
